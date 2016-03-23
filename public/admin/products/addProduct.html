@@ -5,22 +5,39 @@
     <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
-<div class="container row " ng-controller="ProductAdd">
-    <h1>Form Validation States</h1>
-    <form role="form">
-        <div class="form-group has-success">
-            <label class="control-label" for="inputSuccess">Input with success</label>
-            <input type="text" class="form-control" id="inputSuccess">
+<div class="row" ng-controller="ProductAdd">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form role="form" action="/product/add" method="post" enctype="multipart/form-data">
+                    <div class="form-group input-group">
+                        <span class="input-group-addon">内部编号</span>
+                        <input type="text" name="product_number" class="form-control" id="product_number">
+                    </div>
+                    <div class="form-group input-group ">
+                        <span class="input-group-addon">产品名称</span>
+                        <input type="text" name="product_name" class="form-control" id="product_name">
+                    </div>
+                    <div class="form-group input-group ">
+                        <span class="input-group-addon">产品规格</span>
+                        <input type="text" name="product_size" class="form-control" id="product_size">
+                    </div>
+                    <div class="form-group input-group ">
+                        <span class="input-group-addon">最大容量</span>
+                        <input type="text" name="capacity" class="form-control" id="capacity">
+                    </div>
+                    <div class="form-group input-group ">
+                        <span class="input-group-addon">产品图片</span>
+                        <input type="file" name="picture" class="form-control" id="picture">
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-default">提交</button>
+                        <button type="reset" class="btn btn-default">取消</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="form-group has-warning">
-            <label class="control-label" for="inputWarning">Input with warning</label>
-            <input type="text" class="form-control" id="inputWarning">
-        </div>
-        <div class="form-group has-error">
-            <label class="control-label" for="inputError">Input with error</label>
-            <input type="text" class="form-control" id="inputError">
-        </div>
-    </form>
+    </div>
     <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->

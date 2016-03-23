@@ -27,9 +27,9 @@ Product.getByNumber = (number) => new Promise((resolve, reject) => {
         .catch(reject);
 });
 
-// 根据用户名查找
+// 根据用户名查找.start
 Product.getList = () => new Promise((resolve, reject) => {
-    db.query(`SELECT * FROM products `)
+    db.query(`SELECT * FROM products`)
         .then((results) => {
             var products = [];
             results.forEach((product) => {
@@ -40,5 +40,22 @@ Product.getList = () => new Promise((resolve, reject) => {
         })
         .catch(reject);
 });
+
+Product.prototype.save = function() {
+    return new Promise((resolve, reject) => {
+        db
+            .query(`INSERT INTO products SET ?`, this)
+            .then((result) => {
+                // 判断是否插入成功
+                if (result.affectedRows) {
+                    this.id = result.insertId; // 拿到刚刚插入的ID
+                    resolve(this);
+                } else {
+                    reject(new Error('插入数据失败' + result.message));
+                }
+            })
+            .catch(reject);
+    })
+}
 
 module.exports = Product;

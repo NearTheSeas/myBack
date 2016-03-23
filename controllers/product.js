@@ -1,5 +1,8 @@
 const Product = require('../models/product');
 const utility = require('utility');
+const formidable = require('formidable');
+const fs = require('fs');
+const path = require('path');
 
 exports.detail = (req, res) => {
     Product.getByNumber(req.params.number)
@@ -24,4 +27,39 @@ exports.list = (req, res) => {
 };
 
 // 添加产品
-// exports.add = (req, res) => {};
+exports.add = (req, res) => {
+    var form = new formidable.IncomingForm();
+    // 保留上传文件的扩展名
+    form.keepExtensions = true;
+    // 限制上传文件的大小
+    form.maxFieldSize = 10 * 1024 * 1000;
+    // fields: 表单中 文本框的内容
+    // files：上传的文件
+    form.parse(req, (err, fields, files) => {
+        // 拼接图片路径
+        var pic = files.length > 0 ? product.product_number + path.extname(files['picture'].path) : '';
+        Product.create({
+                product_number: fields.product_number,
+                product_name: fields.product_name,
+                product_size: fields.product_size,
+                capacity: fields.capacity,
+                picture: pic
+            }).save()
+            .then(product => {
+                if (!product) {
+                    return Promise.reject(new Error('保存产品失败'));
+                }
+                if (pic) {
+                    var readstrean = fs.createReadStream(files['picture'].path);
+                    var writeStream = fs.WriteStream(path.join(__dirname,
+                        `../public/uploads/${pic}`));
+                    readstrean.pipe(writeStream);
+                    fs.unlinkSync(files['poster'].path);
+                }
+                res.json('product');
+            })
+            .catch(err => {
+                res.send(err);
+            });
+    })
+};

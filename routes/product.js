@@ -9,6 +9,6 @@ router.get('/list', product.list);
 router.get('/detail/:number', product.detail);
 
 // 添加产品
-// router.post('/add', product.add);
+router.post('/add', product.add);
 
 module.exports = router;
