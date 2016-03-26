@@ -54,7 +54,7 @@
             '$route',
             '$routeParams',
             function($scope, $http, $route, $routeParams) {
-                var count = 1;
+                var count = 3;
                 var page = $routeParams.page ? parseInt($routeParams.page) : 1; //从访问地址中获取当前的页码
                 var start = (page - 1) * count; //当前页的第一条记录索引号
                 $scope.totalCount = 0; //总条数

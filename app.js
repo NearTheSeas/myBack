@@ -31,10 +31,21 @@ app.use('/admin', admin);
 const account = require('./routes/account');
 app.use('/account', account);
 
-
 // 产品相关
 const product = require('./routes/product');
 app.use('/product', product);
+
+// 仓位相关
+const position = require('./routes/position');
+app.use('/position', position);
+
+// 货架相关
+const shelf = require('./routes/shelf');
+app.use('/shelf', shelf);
+
+// 入库单
+const receipt = require('./routes/receipt');
+app.use('/receipt', receipt);
 
 module.exports = app;
 if (!module.parent) {

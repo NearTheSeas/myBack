@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h2 class="page-header">仓位管理</h2>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row" ng-controller="shelfList">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <table class="table table-hover text-center">
+                    <thead>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">货架编号</th>
+                        <th class="text-center">状态</th>
+                        <!-- <th class="text-center">详情</th> -->
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="shelf in shelfs track by $index ">
+                            <td>{{shelf.id}}</td>
+                            <td>{{shelf.shelf_number}}</td>
+                            <td>{{shelf.status ? "可用":"不可用"}}</td>
+                            <!-- <td> a href="#/shelf/detail/{{shelf.shelf_number}}" class='btn btn-primary'>详情</a></td> -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->

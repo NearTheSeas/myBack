@@ -4,6 +4,7 @@ const formidable = require('formidable');
 const fs = require('fs');
 const path = require('path');
 
+// 产品详情
 exports.detail = (req, res) => {
     Product.getByNumber(req.params.number)
         .then((product) => {
@@ -33,12 +34,12 @@ exports.add = (req, res) => {
     form.keepExtensions = true;
     // 限制上传文件的大小
     form.maxFieldSize = 10 * 1024 * 1000;
-    // fields: 表单中 文本框的内容
-    // files：上传的文件
+    // fields: 表单中 文本框的内容  files：上传的文件
     form.parse(req, (err, fields, files) => {
         // 拼接图片路径
-        var pic = files.length > 0 ? product.product_number + path.extname(files['picture'].path) : '';
-        Product.create({
+        var pic = files.picture ? fields.product_number + path.extname(files['picture'].path) : '';
+
+        var product = Product.create({
                 product_number: fields.product_number,
                 product_name: fields.product_name,
                 product_size: fields.product_size,

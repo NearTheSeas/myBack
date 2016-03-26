@@ -10,7 +10,6 @@ router.use((req, res, next) => {
     if (req.session.current_user) {
         next();
     } else {
-
         // cookie中是否存在登录信息
         var cookieUser = req.cookies.uinfo;
         if (!cookieUser) {
