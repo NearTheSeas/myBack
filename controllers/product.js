@@ -11,10 +11,20 @@ exports.detail = (req, res) => {
             if (!product) {
                 return Promise.reject(new Error('产品不存在'));
             }
-            res.json(product);
+            // req.query ==> {callback:'angular.callbacks._0'}JSON.stringigify(product)
+            // req.query.callback ==> angular.callbacks._0
+            if (req.query.callback) {
+                // 手写回调函数的话，需要设置 content-type
+                // var str = `function ${req.query.callback}(${JSON.stringify(product)}){}`;
+                // var result = eval(str)
+                res.jsonp(product);
+            } else {
+                res.json(product);
+            }
         }).catch(error => {
-            res.render('account/login', { message: error.message });
-        });
+            // res.render('account/login', { message: error.message });
+            res.render(error.message);});
+
 };
 
 // 产品列表
