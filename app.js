@@ -47,7 +47,12 @@ app.use('/shelf', shelf);
 const receipt = require('./routes/receipt');
 app.use('/receipt', receipt);
 
+// 二维码
+const code = require('./routes/code');
+app.use('/code', code);
+
 module.exports = app;
 if (!module.parent) {
-    app.listen(3000, function() { console.log(`server is ready @ http://localhost:3000`) });
+    app.listen(3000, function() { console.log(`server is ready @ http://localhost:3000`) }
+);
 }

@@ -36,31 +36,7 @@
             '$route',
             '$routeParams',
             function($scope, $http, $route, $routeParams) {
-                var count = 3;
-                var page = $routeParams.page ? parseInt($routeParams.page) : 1;
-                var start = (page - 1) * count;
-                $scope.totalCount = 0;
-                $scope.totalPage = 0;
-                $scope.currentPage = page;
-                var receiptList = [];
-                $scope.receipts = [];
-                if (!$scope.receipts.length) {
-                    $http({
-                        url: '/receipt/list',
-                        method: "GET"
-                    }).success(function(receipts) {
-                        receiptList = receipts;
-                        $scope.totalCount = receiptList.length;
-                        $scope.totalPage = Math.ceil(receiptList.length / count);
-                        $scope.receipts = receiptList.slice(start, start + count);
-                    }).error(function() {});
-                }
 
-                // $scope.$apply();
-                $scope.go = function(page) {
-                    if (page >= 1 && page <= $scope.totalPage)
-                        $route.updateParams({ page: page });
-                }
             }
         ]);
 })(angular);

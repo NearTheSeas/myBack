@@ -1,18 +1,12 @@
 const Receipt = require('../models/receipt');
 
-exports.detail = (req, res) => {
-    Receipt.getByNumber(req.params.number)
-        .then((receipt) => {
-            if (!receipt) {
-                return Promise.reject(new Error('出错了'));
-            }
-            res.json(receipt);
-        }).catch(error => {
-            res.render('error/404', { message: error.message });
-        });
+exports.add = (req, res) => {
+    console.log(req.body);
+    // console.log(req.query);
+    res.send('添加访问成功');
 };
 
-// 仓位列表
+// 入库单列表
 exports.list = (req, res) => {
     Receipt.getList()
         .then((receipts) => {

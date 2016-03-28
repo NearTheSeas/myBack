@@ -19,14 +19,7 @@
             '$http',
             '$routeParams',
             function($scope, $http, $routeParams) {
-                var number = $routeParams.number;
-                $scope.shelf = null;
-                $http({
-                    url: '/shelf/detail/' + number,
-                    method: "GET"
-                }).success(function(shelf) {
-                    $scope.shelf = shelf;
-                }).error(function() {});
+
             }
         ])
         // 仓位列表

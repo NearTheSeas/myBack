@@ -5,7 +5,7 @@ exports.detail = (req, res) => {
     Position.getByNumber(req.params.number)
         .then((position) => {
             if (!position) {
-                return Promise.reject(new Error('仓位 u不存在'));
+                return Promise.reject(new Error('仓位不存在'));
             }
             res.json(position);
         }).catch(error => {

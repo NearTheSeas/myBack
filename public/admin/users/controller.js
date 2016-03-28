@@ -22,7 +22,5 @@
                 $scope.users = users;
             }).error(function() {});
         }
-
-
     ]);
 })(angular);
